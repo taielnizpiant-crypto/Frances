@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>French Learning Center 🇫🇷 — Sistema A0 → A1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #FAF8FC;
+      --bg-card: #FFFFFF;
+      --bg-soft: #F3EEF9;
+      --bg-rose-soft: #FDF2F6;
+      --primary: #7C5CFA;
+      --primary-dark: #5E3FE0;
+      --primary-light: #EDE8FF;
+      --lavender: #A78BFA;
+      --rose: #EC799A;
+      --rose-light: #FCE7EF;
+      --text-main: #231F32;
+      --text-muted: #6B6580;
+      --border: #EAE4F4;
+      --success: #10B981;
+      --success-bg: #ECFDF5;
+      --shadow-sm: 0 2px 10px rgba(124, 92, 250, 0.05);
+      --shadow-md: 0 8px 24px rgba(124, 92, 250, 0.08);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.01em;
+    }
+
+    /* Layout & Navigation */
+    .app-wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 20px 18px 60px;
+    }
+
+    header.topbar {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F6F1FE 55%, #FDF2F7 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--rose) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 6px 16px rgba(124, 92, 250, 0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.55rem;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill.rose {
+      color: #C2466B;
+      background: var(--bg-rose-soft);
+      border-color: #F8D5E2;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 22px;
+      scrollbar-width: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--lavender);
+      color: var(--primary-dark);
+      background: var(--bg-soft);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--primary) 0%, #8E6CEF 100%);
+      color: #FFFFFF;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(124, 92, 250, 0.25);
+    }
+
+    /* Grid System */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-soft {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Progress Stats */
+    .progress-hero {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .progress-ring-wrap {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      flex-shrink: 0;
+    }
+
+    .progress-ring-wrap svg {
+      transform: rotate(-90deg);
+      width: 112px;
+      height: 112px;
+    }
+
+    .progress-ring-bg {
+      fill: none;
+      stroke: var(--bg-soft);
+      stroke-width: 10;
+    }
+
+    .progress-ring-fill {
+      fill: none;
+      stroke: url(#frenchGrad);
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+
+    .progress-ring-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-ring-text strong {
+      font-size: 1.45rem;
+      color: var(--primary-dark);
+      line-height: 1.1;
+    }
+
+    .progress-ring-text span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stats-boxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .stat-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .stat-box .num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .stat-box .lbl {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Weekly Visual Tracker */
+    .weekly-bars {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .weekly-bars {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .w-bar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .w-bar-track {
+      width: 100%;
+      height: 54px;
+      background: var(--bg-soft);
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: 3px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .w-bar-item:hover .w-bar-track {
+      border-color: var(--primary);
+    }
+
+    .w-bar-fill {
+      width: 100%;
+      background: linear-gradient(180deg, var(--rose) 0%, var(--primary) 100%);
+      border-radius: 7px;
+      transition: height 0.4s ease;
+    }
+
+    .w-bar-fill.complete {
+      background: linear-gradient(180deg, #34D399 0%, #10B981 100%);
+    }
+
+    .w-bar-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* Timer Card */
+    .timer-card {
+      background: linear-gradient(160deg, #FFFFFF 0%, #F5F0FF 65%, #FDF2F6 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .timer-display-wrap {
+      text-align: center;
+      padding: 10px 0 14px;
+    }
+
+    .timer-clock {
+      font-size: 3.2rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--primary-dark);
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+
+    .timer-phase-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: var(--rose-light);
+      color: #B83B62;
+    }
+
+    .timer-controls {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(124, 92, 250, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-soft);
+      color: var(--primary-dark);
+    }
+
+    .btn-secondary:hover {
+      background: #E4DAFA;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--rose);
+      color: #B83B62;
+    }
+
+    /* 10-min Routine Breakdown */
+    .routine-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .routine-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .r-step {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .r-step.active-phase {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 2px 8px rgba(124, 92, 250, 0.15);
+    }
+
+    .r-step .time {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose);
+    }
+
+    .r-step .name {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    /* Next Lesson Spotlight */
+    .next-lesson-banner {
+      background: linear-gradient(120deg, #F3EEFF 0%, #FDF2F7 100%);
+      border: 1px solid #E3D7FA;
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Curriculum Section */
+    .week-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .filter-chip.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: var(--lavender);
+    }
+
+    .week-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+    }
+
+    .week-card-header {
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #FFFFFF;
+      transition: background 0.2s;
+    }
+
+    .week-card-header:hover {
+      background: #FCFAFF;
+    }
+
+    .week-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .week-num-badge {
+      background: var(--bg-soft);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 12px;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 78px;
+    }
+
+    .week-card.week-done .week-num-badge {
+      background: var(--success-bg);
+      color: #059669;
+    }
+
+    .week-titles h3 {
+      font-size: 1.08rem;
+      color: var(--text-main);
+    }
+
+    .week-titles p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .week-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .mini-progress {
+      width: 80px;
+      height: 8px;
+      background: var(--bg-soft);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .mini-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--rose));
+      transition: width 0.3s ease;
+    }
+
+    .lessons-grid {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 0 22px 22px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      background: #FCFBFE;
+    }
+
+    .week-card.open .lessons-grid {
+      display: grid;
+    }
+
+    @media (max-width: 920px) {
+      .lessons-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .lessons-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .lesson-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .lesson-box:hover {
+      border-color: var(--lavender);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .lesson-box.completed {
+      background: #F9FEFB;
+      border-color: #BCEAD5;
+    }
+
+    .lesson-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .day-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--rose);
+      background: var(--bg-rose-soft);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .custom-checkbox {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .lesson-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 6px;
+      line-height: 1.35;
+    }
+
+    .lesson-preview {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .lesson-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .open-lesson-btn {
+      background: var(--bg-soft);
+      color: var(--primary-dark);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .open-lesson-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Sections visibility */
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* Resources Grid */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 850px) {
+      .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .resources-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .resource-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .resource-cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    /* Notes Section */
+    .notes-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .notes-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    textarea.note-area {
+      width: 100%;
+      min-height: 220px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      background: #FCFBFE;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea.note-area:focus {
+      border-color: var(--primary);
+      background: #FFFFFF;
+    }
+
+    .save-indicator {
+      font-size: 0.78rem;
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    /* Modal for Detailed Lesson */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(35, 31, 50, 0.55);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 26px;
+      box-shadow: 0 20px 50px rgba(35, 31, 50, 0.25);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: var(--bg-soft);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .lesson-block {
+      background: var(--bg-main);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .lesson-block.rose-border {
+      border-left-color: var(--rose);
+      background: #FFF9FB;
+    }
+
+    .lesson-block.mint-border {
+      border-left-color: var(--success);
+      background: #F6FEF9;
+    }
+
+    .lesson-block h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lesson-block.rose-border h4 {
+      color: #B83B62;
+    }
+
+    .lesson-block.mint-border h4 {
+      color: #059669;
+    }
+
+    .vocab-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+    }
+
+    @media (max-width: 540px) {
+      .vocab-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vocab-list li {
+      font-size: 0.88rem;
+      background: #FFFFFF;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .speak-btn {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: none;
+      border-radius: 6px;
+      padding: 3px 7px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .speak-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">🇫🇷</div>
+        <div class="brand-text">
+          <h1>French Learning Center</h1>
+          <p>Tu ruta guiada de <strong>A0 a A1</strong> · 10 minutos por día · Explicado en español argentino</p>
+        </div>
+      </div>
+      <div class="header-pills">
+        <span class="pill">🎯 Meta: Nivel A1</span>
+        <span class="pill rose">⏱️ 10 min / día</span>
+        <span class="pill">📅 12 semanas · 72 clases</span>
+      </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="tab-btn active" data-target="view-dashboard">🏠 Dashboard & Programa</button>
+      <button class="tab-btn" data-target="view-routine">⏱️ Rutina de 10 Minutos</button>
+      <button class="tab-btn" data-target="view-resources">🎧 Recursos Útiles</button>
+      <button class="tab-btn" data-target="view-notes">📝 Mis Notas & Vocabulario</button>
+    </nav>
+
+    <!-- VIEW 1: DASHBOARD & CURRICULUM -->
+    <section id="view-dashboard" class="view-section active">
+      <div class="dashboard-grid">
+        <!-- Progress Overview Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">📊 Tu Progreso General</h2>
+            <span class="badge-soft" id="level-status-badge">Nivel A0 · Principiante</span>
+          </div>
+
+          <div class="progress-hero">
+            <div class="progress-ring-wrap">
+              <svg viewBox="0 0 112 112">
+                <defs>
+                  <linearGradient id="frenchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7C5CFA" />
+                    <stop offset="100%" stop-color="#EC799A" />
+                  </linearGradient>
+                </defs>
+                <circle class="progress-ring-bg" cx="56" cy="56" r="46" />
+                <circle class="progress-ring-fill" id="progress-circle" cx="56" cy="56" r="46"
+                        stroke-dasharray="289.02" stroke-dashoffset="289.02" />
+              </svg>
+              <div class="progress-ring-text">
+                <strong id="progress-percent">0%</strong>
+                <span>completado</span>
+              </div>
+            </div>
+
+            <div class="stats-boxes">
+              <div class="stat-box">
+                <div class="num"><span id="completed-count">0</span> / 72</div>
+                <div class="lbl">Clases listas</div>
+              </div>
+              <div class="stat-box">
+                <div class="num"><span id="weeks-completed">0</span> / 12</div>
+                <div class="lbl">Semanas cerradas</div>
+              </div>
+              <div class="stat-box">
+                <div class="num"><span id="minutes-invested">0</span> min</div>
+                <div class="lbl">Tiempo invertido</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.8rem; font-weight:600; color:var(--text-muted);">Seguimiento semanal (hacé clic en una semana para ir)</span>
+              <span style="font-size:0.76rem; color:var(--primary-dark); font-weight:600;">6 días estudio + 1 descanso</span>
+            </div>
+            <div class="weekly-bars" id="weekly-bars"></div>
+          </div>
+        </div>
+
+        <!-- 10-Minute Timer Card -->
+        <div class="card timer-card">
+          <div class="card-header" style="margin-bottom:6px;">
+            <h2 class="card-title">⏳ Temporizador de Sesión</h2>
+            <span class="badge-soft" style="background:var(--rose-light); color:#B83B62;">10:00 exactos</span>
+          </div>
+
+          <div class="timer-display-wrap">
+            <div class="timer-clock" id="timer-display">10:00</div>
+            <div class="timer-phase-badge" id="timer-phase-label">Listo para arrancar tu sesión</div>
+          </div>
+
+          <div class="timer-controls">
+            <button class="btn btn-primary" id="btn-start">▶ Iniciar</button>
+            <button class="btn btn-secondary" id="btn-pause" disabled>⏸ Pausar</button>
+            <button class="btn btn-outline" id="btn-reset">↺ Reiniciar</button>
+          </div>
+
+          <div class="routine-steps" id="timer-phases-grid">
+            <div class="r-step" data-phase="0">
+              <div class="time">Min 10–8 (2m)</div>
+              <div class="name">Vocabulario</div>
+            </div>
+            <div class="r-step" data-phase="1">
+              <div class="time">Min 8–5 (3m)</div>
+              <div class="name">Tema nuevo</div>
+            </div>
+            <div class="r-step" data-phase="2">
+              <div class="time">Min 5–2 (3m)</div>
+              <div class="name">Pronunciación</div>
+            </div>
+            <div class="r-step" data-phase="3">
+              <div class="time">Min 2–0 (2m)</div>
+              <div class="name">Práctica</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Suggested Lesson Banner -->
+      <div class="next-lesson-banner" id="next-lesson-banner">
+        <div>
+          <span class="day-tag" id="next-lesson-tag">Tu próxima clase</span>
+          <h3 style="font-size:1.15rem; margin-top:4px;" id="next-lesson-title">Semana 1 · Día 1: Saludos básicos y cortesía</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);" id="next-lesson-sub">Sonoridad francesa desde el saludo inicial y cortesía cotidiana.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" id="btn-open-next">📖 Abrir clase de hoy</button>
+        </div>
+      </div>
+
+      <!-- 12-Week Curriculum List -->
+      <div class="week-filter-bar">
+        <div>
+          <h2 class="serif-title" style="font-size:1.45rem;">Programa Completo de 12 Semanas</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted);">72 clases progresivas. Abrí cada clase para ver la explicación, audio de pronunciación y práctica.</p>
+        </div>
+        <div class="filter-pills">
+          <button class="filter-chip active" data-filter="all">Todas (12)</button>
+          <button class="filter-chip" data-filter="pending">Pendientes</button>
+          <button class="filter-chip" data-filter="completed">Completadas</button>
+          <button class="filter-chip" id="btn-toggle-all">Expandir / Contraer</button>
+        </div>
+      </div>
+
+      <div id="curriculum-container"></div>
+    </section>
+
+    <!-- VIEW 2: DAILY 10-MINUTE ROUTINE -->
+    <section id="view-routine" class="view-section">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <h2 class="card-title">⏱️ Cómo aprovechar tus 10 minutos diarios</h2>
+          <span class="badge-soft">Método micro-hábito</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.93rem; margin-bottom:18px;">
+          Estudiar 10 minutos todos los días (6 días a la semana + 1 día libre para descansar la cabeza) es mucho más efectivo que estudiar una hora aislada los domingos. Así se divide cada sesión:
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+          <div class="lesson-block" style="margin-bottom:0;">
+            <h4>1. Repaso de vocabulario · 2 min</h4>
+            <p style="font-size:0.88rem;">Leé en voz alta las 6 palabras o frases clave de la clase. Tapá la traducción en español y fijate cuáles ya recordás. Si usás el audio integrado, repetí cada palabra imitando la melodía.</p>
+          </div>
+          <div class="lesson-block rose-border" style="margin-bottom:0;">
+            <h4>2. Explicación de tema nuevo · 3 min</h4>
+            <p style="font-size:0.88rem;">Leé la explicación breve en español argentino. No busques memorizar tablas interminables de gramática: entendé cómo funciona la estructura con un par de ejemplos reales.</p>
+          </div>
+          <div class="lesson-block" style="margin-bottom:0;">
+            <h4>3. Escucha y pronunciación · 3 min</h4>
+            <p style="font-size:0.88rem;">En francés la pronunciación lo es todo. Prestá atención a las letras mudas del final, las vocales nasales (<em>on, an, in</em>) y la famosa <em>u</em> francesa. Usá el botón 🔊 de cada clase.</p>
+          </div>
+          <div class="lesson-block mint-border" style="margin-bottom:0;">
+            <h4>4. Práctica oral o escrita · 2 min</h4>
+            <p style="font-size:0.88rem;">Cerrá la sesión produciendo vos mismo: decí las frases de práctica en voz alta (aunque estés solo en tu pieza) o anotalas en la pestaña <strong>Mis Notas</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="margin-bottom:12px;">🗓️ Sugerencia de organización semanal</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Lunes · Día 1</div><div class="lbl">Vocabulario + base</div></div>
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Martes · Día 2</div><div class="lbl">Estructura clave</div></div>
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Miércoles · Día 3</div><div class="lbl">Sonidos y ritmo</div></div>
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Jueves · Día 4</div><div class="lbl">Verbos en acción</div></div>
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Viernes · Día 5</div><div class="lbl">Frases reales</div></div>
+          <div class="stat-box"><div class="num" style="font-size:0.95rem; color:var(--primary-dark);">Sábado · Día 6</div><div class="lbl">Integración semanal</div></div>
+          <div class="stat-box" style="background:var(--bg-rose-soft); border-color:#F8D5E2;"><div class="num" style="font-size:0.95rem; color:#B83B62;">Domingo</div><div class="lbl">Descanso activo ☕</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: RESOURCES -->
+    <section id="view-resources" class="view-section">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header">
+          <h2 class="card-title">🎧 Recursos Seleccionados para Nivel A0–A1</h2>
+          <span class="badge-soft">100% gratuitos</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">
+          Herramientas confiables para complementar tus 10 minutos diarios con oído real, diccionarios y práctica extra.
+        </p>
+        <div class="resources-grid">
+          <a href="https://apprendre.tv5monde.com/fr/exercices/a1-debutant" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Comprensión Auditiva</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">TV5MONDE — Apprendre A1</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">Videos cortos reales con ejercicios interactivos diseñados especialmente para principiantes absolutos.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+
+          <a href="https://francaisfacile.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Podcasts & Oído</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">RFI — Le Journal en Français Facile</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">Noticias de 10 minutos habladas en francés claro, pausado y con transcripción completa para leer mientras escuchás.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+
+          <a href="https://es.forvo.com/languages/fr/" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Pronunciación Nativa</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">Forvo Francés</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">Escribí cualquier palabra francesa y escuchá cómo la pronuncian hablantes nativos reales de Francia, Canadá o Bélgica.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+
+          <a href="https://www.wordreference.com/fres/" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Diccionario & Foros</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">WordReference Francés–Español</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">El mejor diccionario para ver ejemplos en contexto, género de cada sustantivo (m/f) y dudas en foros.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+
+          <a href="https://leconjugueur.lefigaro.fr/" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Verbos</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">Le Conjugueur</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">Conjugador rápido para verificar cómo se escribe cualquier verbo en presente, passé composé o futur proche.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+
+          <a href="https://www.lawlessfrench.com/pronunciation/" target="_blank" rel="noopener" class="resource-card">
+            <div>
+              <span class="resource-cat">Fonética</span>
+              <h3 style="font-size:1.05rem; margin:6px 0;">Guía de Fonética Francesa</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted);">Explicaciones detalladas de vocales nasales, liaisons y letras mudas con audios de ejemplo.</p>
+            </div>
+            <span style="font-size:0.8rem; font-weight:600; color:var(--primary);">Abrir recurso →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: PERSONAL NOTES -->
+    <section id="view-notes" class="view-section">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📝 Cuaderno Personal de Francés</h2>
+          <span class="save-indicator" id="notes-save-status">✓ Guardado automáticamente</span>
+        </div>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;">
+          Todo lo que escribas acá queda guardado en tu navegador (<code>localStorage</code>) incluso si cerrás la pestaña o lo usás dentro de Notion.
+        </p>
+
+        <div class="notes-layout">
+          <div>
+            <label style="display:block; font-weight:700; font-size:0.88rem; margin-bottom:8px; color:var(--primary-dark);">
+              🔤 Mi Vocabulario & Frases Favoritas
+            </label>
+            <textarea id="notes-vocab" class="note-area" placeholder="Ejemplo:&#10;• Bonjour = Hola / Buen día&#10;• Je voudrais un café = Quisiera un café&#10;• J'ai la flemme = Tengo fiaca"></textarea>
+          </div>
+          <div>
+            <label style="display:block; font-weight:700; font-size:0.88rem; margin-bottom:8px; color:#B83B62;">
+              💡 Dudas, Reglas & Apuntes de Clase
+            </label>
+            <textarea id="notes-grammar" class="note-area" placeholder="Anotá acá tus dudas de pronunciación, ejemplos propios o temas que quieras repasar el fin de semana..."></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-secondary" id="btn-export-notes">⬇ Descargar mis notas (.txt)</button>
+          <button class="btn btn-outline" id="btn-reset-all" style="font-size:0.78rem;">Reiniciar progreso completo</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      French Learning Center 🇫🇷 · Diseñado para estudio diario de 10 minutos · Compatible con GitHub Pages & Notion <code>/embed</code>
+    </footer>
+  </div>
+
+  <!-- LESSON DETAIL MODAL -->
+  <div class="modal-backdrop" id="lesson-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">✕</button>
+      <span class="day-tag" id="modal-week-day">Semana 1 · Día 1</span>
+      <h2 class="serif-title" style="font-size:1.5rem; margin:6px 0 16px;" id="modal-title">Título de la clase</h2>
+
+      <div class="lesson-block">
+        <h4>
+          <span>1. Vocabulario clave (2 min)</span>
+          <span style="font-size:0.72rem; font-weight:500; text-transform:none;">Tocá 🔊 para escuchar</span>
+        </h4>
+        <ul class="vocab-list" id="modal-vocab-list"></ul>
+      </div>
+
+      <div class="lesson-block rose-border">
+        <h4>2. Explicación sencilla (3 min)</h4>
+        <p id="modal-explanation" style="font-size:0.92rem;"></p>
+      </div>
+
+      <div class="lesson-block">
+        <h4>3. Tip de escucha y pronunciación (3 min)</h4>
+        <p id="modal-pronunciation" style="font-size:0.92rem;"></p>
+      </div>
+
+      <div class="lesson-block mint-border">
+        <h4>4. Práctica rápida oral / escrita (2 min)</h4>
+        <p id="modal-practice" style="font-size:0.92rem; font-weight:500;"></p>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:18px; padding-top:14px; border-top:1px solid var(--border);">
+        <button class="btn btn-secondary" id="modal-start-timer">⏱️ Iniciar reloj de 10 min</button>
+        <button class="btn btn-primary" id="modal-toggle-complete">✓ Marcar clase como completada</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CURRICULUM = [{"week": 1, "title": "Saludos, alfabeto, pronunciación y presentaciones", "subtitle": "Tus primeros pasos en francés: sonar natural desde el día uno.", "lessons": [{"id": "w1l1", "day": 1, "title": "Saludos básicos y cortesía", "vocab": ["Bonjour (Hola / Buen día)", "Salut (Hola / Chau - informal)", "Bonsoir (Buenas tardes/noches)", "Merci (Gracias)", "S'il vous plaît (Por favor - formal)", "Au revoir (Chau / Adiós)"], "explanation": "En francés, la cortesía es clave. Usá 'Bonjour' durante el día con todo el mundo (al entrar a un local, por ejemplo) y 'Salut' solo con amigos o gente de tu edad. Ojo con la 'u' de 'Salut': poné la boca como para decir 'u' pero pronunciá una 'i'.", "pronunciation": "La 'ou' en 'Bonjour' suena exactamente como nuestra 'u' en español (Bon-yur). La 'r' francesa sale suave desde la garganta, como haciendo gárgaras muy suavecitas.", "practice": "Decí en voz alta: 'Bonjour ! Merci beaucoup. Au revoir !' e imaginá que entrás a una panadería en París."}, {"id": "w1l2", "day": 2, "title": "El alfabeto francés y las vocales clave", "vocab": ["A, E, I, O, U", "É (e cerrada)", "È / Ê (e abierta)", "Ç (cédille - suena como s)", "C'est (Es / Esto es)", "Ça va ? (¿Todo bien?)"], "explanation": "El alfabeto tiene las mismas 26 letras que el nuestro, pero las vocales cambian bastante. La 'e' sin tilde al final de una palabra casi nunca se pronuncia (es muda). La 'é' suena como nuestra 'e', y la 'è' suena más abierta.", "pronunciation": "Deletreá tu nombre en voz alta. Practicá la diferencia entre 'u' (boca cerrada, sonido de 'i') y 'ou' (como la 'u' argentina).", "practice": "Respondé en voz alta a la pregunta 'Ça va ?' con 'Oui, ça va très bien, merci !' (Sí, todo muy bien, ¡gracias!)."}, {"id": "w1l3", "day": 3, "title": "Presentarte: decir tu nombre", "vocab": ["Je m'appelle... (Me llamo...)", "Je suis... (Yo soy...)", "Moi, c'est... (Yo soy... - informal)", "Enchanté / Enchantée (Encantado/a)", "Et toi ? (¿Y vos?)", "Et vous ? (¿Y usted?)"], "explanation": "Para presentarte, la estructura más usada es 'Je m'appelle + tu nombre'. Si querés sonar más descontracturado con gente joven, podés decir 'Moi, c'est + tu nombre'. Recordá agregar una 'e' al final de 'Enchantée' si sos mujer (se pronuncia igual).", "pronunciation": "En 'Je m'appelle', la 'e' de 'Je' suena neutra (como una 'o' muy cortita y relajada). La doble 'll' en francés NO suena como nuestra 'elle' porteña, suena como una 'l' normal.", "practice": "Presentate frente al espejo: 'Bonjour ! Je m'appelle [tu nombre]. Enchanté(e) ! Et toi ?'"}, {"id": "w1l4", "day": 4, "title": "Los pronombres personales (Je, Tu, Il, Elle...)", "vocab": ["Je (Yo)", "Tu (Vos / Tú)", "Il / Elle (Él / Ella)", "On (Nosotros informal / Se)", "Nous (Nosotros formal)", "Vous (Usted / Ustedes)", "Ils / Elles (Ellos / Ellas)"], "explanation": "En francés siempre tenés que poner el pronombre antes del verbo (no podés decir 'soy', tenés que decir 'yo soy'). Un dato clave: en el francés hablado de todos los días, casi nadie usa 'Nous'; usan 'On' para decir 'nosotros'.", "pronunciation": "La 's' final de 'Nous', 'Vous', 'Ils' y 'Elles' NO se pronuncia, a menos que la palabra siguiente empiece con vocal (eso se llama 'liaison').", "practice": "Repetí en orden todos los pronombres señalándote a vos y a otras personas imaginarias: Je, Tu, Il, Elle, On, Nous, Vous, Ils, Elles."}, {"id": "w1l5", "day": 5, "title": "Las vocales nasales (¡el toque francés!)", "vocab": ["Bon (Bueno)", "Pain (Pan)", "Vin (Vino)", "Blanc (Blanco)", "Un (Uno)", "Non (No)"], "explanation": "Cuando una vocal está seguida de 'n' o 'm' al final de una sílaba, el aire sale un poquito por la nariz y la 'n' o 'm' no se pronuncia del todo. Hay tres sonidos nasales principales: 'on', 'an/en' y 'in/un'.", "pronunciation": "Para decir 'Non' o 'Bon', prepará la boca para decir 'o', pero dejá que vibre la nariz sin apoyar la lengua en el paladar para la 'n'.", "practice": "Practicá este mini-pedido en voz alta: 'Un pain et un vin blanc, s'il vous plaît.'"}, {"id": "w1l6", "day": 6, "title": "Repaso y mini-diálogo de la Semana 1", "vocab": ["Excusez-moi (Disculpe)", "Pardon (Perdón)", "De rien (De nada)", "Bonne journée (Que tengas buen día)", "À bientôt (Hasta pronto)", "Comment tu t'appelles ? (¿Cómo te llamás?)"], "explanation": "Hoy integramos todo lo de la semana. Fijate cómo se arma una conversación real de primer contacto: saludo + pregunta de estado + nombre + despedida amable.", "pronunciation": "Escuchá cómo se unen las palabras en 'Comment tu t'appelles ?'. La 't' final de 'Comment' es muda.", "practice": "Actuá ambos roles en voz alta: A: 'Bonjour ! Comment tu t'appelles ?' B: 'Salut ! Moi, c'est Lucas. Et toi ?' A: 'Je m'appelle Sofía, enchantée !'"}]}, {"week": 2, "title": "Números, edad, nacionalidades y preguntas", "subtitle": "Dar tus datos básicos y empezar a hacer preguntas simples.", "lessons": [{"id": "w2l1", "day": 1, "title": "Los números del 0 al 20", "vocab": ["0: zéro, 1: un, 2: deux, 3: trois, 4: quatre, 5: cinq", "6: six, 7: sept, 8: huit, 9: neuf, 10: dix", "11: onze, 12: douze, 13: treize, 14: quatorze, 15: quinze", "16: seize, 17: dix-sept, 18: dix-huit, 19: dix-neuf, 20: vingt"], "explanation": "Del 0 al 16 cada número tiene su propio nombre. A partir del 17, se suman: dix-sept (diez-siete), dix-huit (diez-ocho), dix-neuf (diez-nueve). ¡Super lógico!", "pronunciation": "En 'sept' (7), la 'p' es muda (se dice 'set'). En 'vingt' (20), la 'g' y la 't' son mudas (se dice 'van' nasal).", "practice": "Contá del 0 al 20 en voz alta y después decí tu número de teléfono dígito por dígito en francés."}, {"id": "w2l2", "day": 2, "title": "El verbo AVOIR (Tener) y decir tu edad", "vocab": ["J'ai (Yo tengo)", "Tu as (Vos tenés)", "Il / Elle a (Él / Ella tiene)", "Quel âge tu as ? (¿Qué edad tenés?)", "J'ai vingt ans (Tengo 20 años)", "Ans (Años)"], "explanation": "Igual que en español, en francés la edad 'se tiene' (no 'se es', como en inglés). Usamos el verbo 'avoir': 'J'ai + número + ans'. Nunca te olvides de agregar 'ans' al final.", "pronunciation": "En 'J'ai vingt ans', hacemos la 'liaison': la 't' de 'vingt' se une con 'ans' y suena 'van-tan'.", "practice": "Decí tu edad y la de dos familiares o amigos usando 'J'ai... ans' y 'Il/Elle a... ans'."}, {"id": "w2l3", "day": 3, "title": "Los números del 21 al 69", "vocab": ["21: vingt et un, 22: vingt-deux", "30: trente", "40: quarante", "50: cinquante", "60: soixante", "65: soixante-cinq"], "explanation": "Las decenas del 20 al 60 funcionan igual que en español: decena + unidad (ej: trente-deux = 32). El único detalle es que cuando termina en 1 (21, 31, 41, 51, 61) se agrega 'et': 'trente et un'.", "pronunciation": "En 'soixante' (60), la 'x' suena como una 's' fuerte ('sua-sant').", "practice": "Decí en voz alta: 21, 34, 48, 55, 61 y 69."}, {"id": "w2l4", "day": 4, "title": "El verbo ÊTRE (Ser/Estar) y nacionalidades", "vocab": ["Je suis (Yo soy/estoy)", "Tu es (Vos sos/estás)", "Il / Elle est (Él / Ella es/está)", "Argentin / Argentine (Argentino/a)", "Français / Française (Francés/a)", "Espagnol / Espagnole (Español/a)"], "explanation": "El verbo 'être' equivale tanto a 'ser' como a 'estar'. Para las nacionalidades, generalmente agregamos una '-e' para el femenino. En francés las nacionalidades van en minúscula cuando son adjetivos.", "pronunciation": "Fijate cómo cambia el sonido al agregar la 'e': 'Argentin' (nasal) vs 'Argentine' (se pronuncia la 'n': ar-yan-tín). 'Français' (fran-sé) vs 'Française' (fran-séz).", "practice": "Decí: 'Je suis argentin(e). Mon ami est français. Mon amie est française.'"}, {"id": "w2l5", "day": 5, "title": "Países y preposiciones (en, au, aux)", "vocab": ["J'habite en Argentine (Vivo en Argentina)", "En France (En Francia)", "Au Brésil (En Brasil)", "Au Chili (En Chile)", "Aux États-Unis (En Estados Unidos)", "Où habites-tu ? (¿Dónde vivís?)"], "explanation": "Para decir 'en + país', mirá cómo termina el país: si termina en '-e' (la France, l'Argentine), es femenino y usa 'en'. Si no termina en '-e' (le Brésil, le Chili), es masculino y usa 'au'. Si es plural, usa 'aux'.", "pronunciation": "En 'J'habite', la 'h' es completamente muda y la 'e' final también. Suena 'ya-bit'.", "practice": "Respondé en voz alta: 'Où habites-tu ?' -> 'J'habite en Argentine, à Buenos Aires (o tu ciudad).'"}, {"id": "w2l6", "day": 6, "title": "Hacer preguntas simples: Est-ce que y entonación", "vocab": ["Tu parles français ? (¿Hablás francés?)", "Est-ce que tu parles français ? (¿Hablás francés?)", "Qui ? (¿Quién?)", "Quoi ? / Qu'est-ce que... ? (¿Qué?)", "Où ? (¿Dónde?)", "Comment ? (¿Cómo?)"], "explanation": "La forma más fácil y natural de preguntar en francés es decir una oración normal y subir la entonación al final ('Tu es argentin ?'). Si querés sonar un poco más estructurado, poné 'Est-ce que' adelante de todo.", "pronunciation": "'Est-ce que' se pronuncia todo junto como una sola palabra: 'es-ke'.", "practice": "Armá 3 preguntas en voz alta usando 'Est-ce que tu...' (ej: 'Est-ce que tu habites à Paris ?')."}]}, {"week": 3, "title": "Género, artículos, adjetivos y descripciones", "subtitle": "Nombrar las cosas que te rodean y describir personas u objetos.", "lessons": [{"id": "w3l1", "day": 1, "title": "Artículos definidos e indefinidos (Le, La, Un, Une)", "vocab": ["Le / L' (El)", "La / L' (La)", "Les (Los / Las)", "Un (Un)", "Une (Una)", "Des (Unos / Unas)"], "explanation": "Igual que en español, los sustantivos tienen género (masculino o femenino). Cuando una palabra empieza con vocal o 'h' muda, 'le' y 'la' se transforman en 'l'' (ej: l'école, l'hôtel).", "pronunciation": "Diferenciá bien 'Un' (nasal, boca relajada) de 'Une' (se pronuncia la 'n' claramente: 'ün').", "practice": "Clasificá estas palabras en voz alta con 'un' o 'une': livre (m), table (f), café (m), maison (f)."}, {"id": "w3l2", "day": 2, "title": "El plural y 'Il y a' (Hay)", "vocab": ["Il y a (Hay)", "Il n'y a pas de... (No hay...)", "Un livre -> Des livres (Un libro -> Unos libros)", "Un chat (Un gato)", "Un chien (Un perro)", "Une voiture (Un auto)"], "explanation": "Para formar el plural en francés, casi siempre agregamos una '-s' al final de la palabra, igual que en español. La gran diferencia es que esa '-s' NO se pronuncia; te das cuenta de que es plural por el artículo ('les' o 'des').", "pronunciation": "'Il y a' se pronuncia rápido todo junto: 'i-li-á' o directamente 'iá'.", "practice": "Mirá alrededor de tu habitación y decí 3 cosas que ves usando 'Il y a...'."}, {"id": "w3l3", "day": 3, "title": "La negación básica: Ne ... pas", "vocab": ["Je ne parle pas (No hablo)", "Je ne suis pas (No soy/estoy)", "Je n'ai pas (No tengo)", "Ce n'est pas (No es)", "Pas du tout (Para nada)", "Un peu (Un poco)"], "explanation": "Para negar en francés, hacés un 'sándwich' con el verbo: ponés 'ne' (o 'n'' antes de vocal) adelante del verbo, y 'pas' después del verbo. En el francés oral informal, la gente suele comerse el 'ne' y dice solo 'Je sais pas'.", "pronunciation": "La 's' de 'pas' es muda (suena 'pa').", "practice": "Pasá estas frases a negativo: 'Je suis français', 'J'ai un chien', 'C'est bon'."}, {"id": "w3l4", "day": 4, "title": "Adjetivos calificativos y concordancia", "vocab": ["Grand / Grande (Grande / Alto/a)", "Petit / Petite (Pequeño/a / Bajo/a)", "Sympa (Simpático/a - invariable)", "Content / Contente (Contento/a)", "Fatigué / Fatiguée (Cansado/a)", "Joli / Jolie (Lindo/a)"], "explanation": "Los adjetivos concuerdan en género y número con la persona o cosa que describen. En general, agregamos '-e' para femenino y '-s' para plural. La mayoría de los adjetivos van después del sustantivo, igual que en español.", "pronunciation": "En masculino 'grand' y 'petit', la consonante final es muda ('gran', 'petí'). Al agregar la '-e' en femenino, esa consonante suena ('grand', 'petít').", "practice": "Describite usando 3 adjetivos con 'Je suis...' (ej: 'Je suis sympa, un peu fatigué(e) et content(e)')."}, {"id": "w3l5", "day": 5, "title": "Los colores en francés", "vocab": ["Bleu / Bleue (Azul)", "Rouge (Rojo/a)", "Vert / Verte (Verde)", "Jaune (Amarillo/a)", "Noir / Noire (Negro/a)", "Blanc / Blanche (Blanco/a)"], "explanation": "Los colores también funcionan como adjetivos y van después del sustantivo (ej: 'un livre rouge'). Si ya terminan en '-e' (rouge, jaune), no cambian en femenino.", "pronunciation": "'Blanc' suena 'blan' (nasal), mientras que su femenino 'Blanche' suena 'blansh'.", "practice": "Nombrá 4 objetos que tengas cerca y decí de qué color son en francés."}, {"id": "w3l6", "day": 6, "title": "Describir una persona o un objeto", "vocab": ["C'est un / une... (Es un / una...)", "Il / Elle est... (Él / Ella es...)", "Très (Muy)", "Assez (Bastante)", "Trop (Demasiado)", "Aussi (También)"], "explanation": "Un error muy común es confundir 'C'est' con 'Il/Elle est'. Usá 'C'est' cuando viene un sustantivo con artículo ('C'est un bon livre') y 'Il/Elle est' cuando viene un adjetivo solo ('Il est très bon').", "pronunciation": "'Très' suena 'tré' (con e abierta). Si viene una vocal después, se une: 'très intéressant' ('tré-zan-te-re-san').", "practice": "Describí tu objeto favorito en 3 frases cortas usando 'C'est...', 'Il/Elle est...' y un color."}]}, {"week": 4, "title": "Presente, verbos regulares y rutina diaria", "subtitle": "Contar qué hacés todos los días y organizar tu semana.", "lessons": [{"id": "w4l1", "day": 1, "title": "Los verbos regulares en -ER (1er grupo)", "vocab": ["Parler (Hablar)", "Aimer (Gustar / Amar)", "Travailler (Trabajar)", "Étudier (Estudiar)", "Regarder (Mirar)", "Écouter (Escuchar)"], "explanation": "El 90% de los verbos franceses terminan en '-er' y son super fáciles: sacás la '-er' y agregás las terminaciones: -e (je), -es (tu), -e (il/elle/on), -ons (nous), -ez (vous), -ent (ils/elles).", "pronunciation": "¡La mejor noticia del francés! Las terminaciones -e, -es, -e y -ent NO SE PRONUNCIAN. 'Je parle', 'Tu parles', 'Il parle' y 'Ils parlent' suenan exactamente igual: 'parl'.", "practice": "Conjugá en voz alta el verbo 'travailler' con todos los pronombres."}, {"id": "w4l2", "day": 2, "title": "Los días de la semana y momentos del día", "vocab": ["Lundi, Mardi, Mercredi, Jeudi", "Vendredi, Samedi, Dimanche", "Le matin (A la mañana)", "L'après-midi (A la tarde)", "Le soir (A la noche)", "Aujourd'hui (Hoy)"], "explanation": "Los días de la semana en francés van en minúscula. Si decís 'lundi', significa 'este lunes'. Si decís 'le lundi', significa 'todos los lunes'.", "pronunciation": "Todos los días terminan en '-di' (excepto dimanche), que suena exactamente como se escribe.", "practice": "Decí qué día es hoy y qué hacés normalmente los lunes y los sábados usando 'Le lundi, je...'."}, {"id": "w4l3", "day": 3, "title": "La hora en francés", "vocab": ["Quelle heure est-il ? (¿Qué hora es?)", "Il est huit heures (Son las ocho)", "Il est midi / minuit (Es mediodía / medianoche)", "Et demie (Y media)", "Et quart (Y cuarto)", "Moins le quart (Menos cuarto)"], "explanation": "Para decir la hora siempre usamos 'Il est + número + heure(s)'. En Francia se usa muchísimo el formato de 24 horas en horarios oficiales (ej: 14h30 = quatorze heures trente), y el de 12 horas en charlas informales.", "pronunciation": "En 'Il est deux heures', la 'x' de 'deux' suena como una 'z' suave unida a 'heures': 'dö-zör'.", "practice": "Decí en voz alta la hora actual y a qué hora te levantás y almorzás."}, {"id": "w4l4", "day": 4, "title": "Verbos reflexivos de la rutina diaria", "vocab": ["Se réveiller (Despertarse)", "Se lever (Levantarse)", "Se doucher (Ducharse)", "S'habiller (Vestirse)", "Se brosser les dents (Lavarse los dientes)", "Se coucher (Acostarse)"], "explanation": "Son iguales a los verbos reflexivos del español. Solo tenés que acordarte del pronombre antes del verbo: Je me lève, Tu te lèves, Il/Elle/On se lève.", "pronunciation": "En 'Je me lève', la 'è' suena abierta ('lev').", "practice": "Contá tu rutina de la mañana en 3 pasos: 'Le matin, je me réveille à..., je me lève et je me douche.'"}, {"id": "w4l5", "day": 5, "title": "Dos verbos clave: ALLER (Ir) y FAIRE (Hacer)", "vocab": ["Je vais (Yo voy), Tu vas, Il/Elle va", "Nous allons, Vous allez, Ils/Elles vont", "Je fais (Yo hago), Tu fais, Il/Elle fait", "Nous faisons, Vous faites, Ils/Elles font", "Faire du sport (Hacer deporte)", "Aller au travail (Ir al trabajo)"], "explanation": "'Aller' y 'Faire' son irregulares pero los vas a usar cada cinco minutos. 'Faire' se usa para muchísimas actividades: faire du sport, faire les courses (hacer las compras), faire la cuisine (cocinar).", "pronunciation": "En 'Je fais', 'Tu fais' y 'Il fait', la terminación '-ais/-ait' suena como una 'e' abierta ('fé').", "practice": "Decí dos cosas que hacés y dos lugares a los que vas en la semana."}, {"id": "w4l6", "day": 6, "title": "Conectores y relato completo de tu día", "vocab": ["D'abord (Primero)", "Ensuite / Puis (Después / Luego)", "Après (Después de)", "Pendant (Durante)", "Finalement (Finalmente)", "Tous les jours (Todos los días)"], "explanation": "Para que tu francés no suene robótico, uní tus frases con conectores simples: 'D'abord... Ensuite... Et le soir...'.", "pronunciation": "En 'D'abord', la 'd' final es muda ('da-bor').", "practice": "Grabate o decí en voz alta un resumen de 40 segundos de tu día típico desde que te levantás hasta que te acostás."}]}, {"week": 5, "title": "Familia, hogar y posesivos", "subtitle": "Hablar de tus afectos, tu casa y tus cosas.", "lessons": [{"id": "w5l1", "day": 1, "title": "Los miembros de la familia", "vocab": ["Les parents (Los padres)", "La mère / Maman (La madre / Mamá)", "Le père / Papa (El padre / Papá)", "Le frère / La sœur (El hermano / La hermana)", "Les grands-parents (Los abuelos)", "Le fils / La fille (El hijo / La hija)"], "explanation": "Ojo con dos palabras: 'Les parents' significa 'los padres' (papá y mamá), no 'parientes'. Y 'La fille' significa tanto 'la hija' como 'la chica/niña'.", "pronunciation": "En 'Le fils' (el hijo), la 'l' es muda pero la 's' SÍ suena: 'fis'. En 'La fille', la 'll' suena como una 'i' suave: 'fiy'.", "practice": "Nombrá a 3 o 4 personas de tu familia diciendo su nombre y edad."}, {"id": "w5l2", "day": 2, "title": "Los adjetivos posesivos (Mon, Ma, Mes...)", "vocab": ["Mon / Ma / Mes (Mi / Mis)", "Ton / Ta / Tes (Tu / Tus)", "Son / Sa / Ses (Su / Sus - de él o ella)", "Notre / Nos (Nuestro/a / Nuestros/as)", "Votre / Vos (Vuestro/a / Su de usted)", "Leur / Leurs (Su / Sus - de ellos)"], "explanation": "En francés el posesivo concuerda con la cosa poseída, igual que en español (mon père, ma mère, mes frères). ¡Excepción importante! Si una palabra femenina empieza con vocal (como 'amie' o 'école'), usamos 'mon/ton/son' para que suene lindo: 'mon amie'.", "pronunciation": "'Mon', 'Ton', 'Son' son nasales. 'Ma', 'Ta', 'Sa' suenan con una 'a' clara y abierta.", "practice": "Decí: 'C'est mon père, c'est ma mère, ce sont mes amis et c'est mon amie Laura.'"}, {"id": "w5l3", "day": 3, "title": "Las partes de la casa y la vivienda", "vocab": ["Un appartement (Un departamento)", "Une maison (Una casa)", "Le salon (El living)", "La cuisine (La cocina)", "La chambre (El dormitorio)", "La salle de bain (El baño)"], "explanation": "En francés, cuando decís 'en casa', la expresión más usada es 'chez moi' (en mi casa), 'chez toi' (en tu casa), 'chez lui/elle' (en su casa).", "pronunciation": "'Chez' se pronuncia 'shé' (con la 'ch' suave como en inglés 'she').", "practice": "Describí dónde vivís: 'J'habite dans un appartement / une maison. Il y a deux chambres, un salon, une cuisine et une salle de bain.'"}, {"id": "w5l4", "day": 4, "title": "Muebles y objetos del hogar", "vocab": ["Le lit (La cama)", "La table (La mesa)", "La chaise (La silla)", "Le canapé (El sillón)", "L'ordinateur (La computadora)", "La fenêtre / La porte (La ventana / La puerta)"], "explanation": "Muchos muebles tienen el género cambiado respecto al español: 'el cama' (le lit) es masculino y 'la sillón' (le canapé) también. No te estreses por memorizar todos de golpe; aprendelos siempre con su artículo.", "pronunciation": "En 'Le lit', la 't' final es muda ('le li').", "practice": "Nombrá 4 muebles que hay en tu living o tu cuarto usando 'Dans ma chambre, il y a...'."}, {"id": "w5l5", "day": 5, "title": "Preposiciones de lugar (Sur, Sous, Dans...)", "vocab": ["Sur (Sobre / Encima de)", "Sous (Debajo de)", "Dans (Dentro de / En)", "Devant (Delante de)", "Derrière (Detrás de)", "À côté de (Al lado de)"], "explanation": "Estas palabras te sirven para ubicar cualquier objeto en el espacio. Recordá que 'de' + 'le' siempre se contrae en 'du' (ej: 'à côté du canapé').", "pronunciation": "Diferenciá bien 'Sur' (con boca cerrada, sonido 'sür' = sobre) de 'Sous' (con boca en tubo como nuestra 'u', 'su' = debajo).", "practice": "Ubicá tu celular y tu computadora usando estas preposiciones: 'Mon téléphone est sur la table, à côté de l'ordinateur.'"}, {"id": "w5l6", "day": 6, "title": "Presentar tu familia y tu casa", "vocab": ["Chez moi (En mi casa)", "Avec (Con)", "Sans (Sin)", "Ensemble (Juntos)", "Beaucoup de (Mucho/a/os/as)", "C'est grand / C'est confortable (Es grande / Es cómodo)"], "explanation": "Hoy juntamos familia, posesivos y descripción del hogar para armar una presentación personal completa y cálida.", "pronunciation": "'Avec' sí pronuncia la 'c' final: 'a-vec'.", "practice": "Contá en voz alta con quién vivís y cómo es tu casa en 5 oraciones."}]}, {"week": 6, "title": "Comida, compras y restaurantes", "subtitle": "Sobrevivir con estilo en una boulangerie, un café o un mercado.", "lessons": [{"id": "w6l1", "day": 1, "title": "Alimentos básicos y comidas del día", "vocab": ["Le petit-déjeuner (El desayuno)", "Le déjeuner (El almuerzo)", "Le dîner (La cena)", "Le pain, le fromage, le beurre (El pan, el queso, la manteca)", "L'eau, le café, le thé, le lait (El agua, el café, el té, la leche)", "La viande, le poulet, le poisson (La carne, el pollo, el pescado)"], "explanation": "En Francia, 'le déjeuner' es el almuerzo y 'le petit-déjeuner' (el pequeño almuerzo) es el desayuno. La cena es 'le dîner'.", "pronunciation": "'L'eau' (el agua) se escribe con tres vocales (e-a-u) pero se pronuncia simplemente 'lo'. ¡Regla de oro: e-a-u siempre suena 'o'!", "practice": "Decí qué desayunás y qué almorzás habitualmente usando 'Le matin, je mange... et je bois...'."}, {"id": "w6l2", "day": 2, "title": "Los artículos partitivos (Du, De la, De l', Des)", "vocab": ["Je mange du pain (Como pan)", "Je bois de l'eau (Tomo agua)", "Je prends de la salade (Tomo/pido ensalada)", "J'achète des fruits (Compro frutas)", "Je ne mange pas de viande (No como carne)", "Un verre d'eau (Un vaso de agua)"], "explanation": "Cuando hablás de una cantidad indeterminada de comida o bebida (algo que no contás por unidad, como agua, pan o café), el francés exige poner 'du' (masc.), 'de la' (fem.), 'de l'' (vocal) o 'des' (plural). En negativo, todos se transforman en 'de'.", "pronunciation": "'Du' suena con la 'u' francesa cerrada ('dü').", "practice": "Decí 3 cosas que comés o tomás y 1 cosa que no comés usando partitivos."}, {"id": "w6l3", "day": 3, "title": "Pedir con educación: Je voudrais...", "vocab": ["Je voudrais... (Quisiera...)", "Je vais prendre... (Voy a pedir/llevar...)", "Un café crème (Un café con leche)", "Un croissant (Una medialuna francesa)", "C'est combien ? (¿Cuánto sale?)", "L'addition, s'il vous plaît (La cuenta, por favor)"], "explanation": "Nunca pidas en un bar diciendo 'Je veux' (Quiero), porque suena brusco. Usá siempre 'Je voudrais...' (Quisiera...) o 'Je vais prendre...' (Voy a llevar...).", "pronunciation": "'Je voudrais' suena 'ye vu-dré'.", "practice": "Simulá un pedido en un café de París: 'Bonjour ! Je voudrais un café crème et un croissant, s'il vous plaît. C'est combien ?'"}, {"id": "w6l4", "day": 4, "title": "Números del 70 al 100 (¡el famoso sistema francés!)", "vocab": ["70: soixante-dix (60+10)", "75: soixante-quinze (60+15)", "80: quatre-vingts (4x20)", "85: quatre-vingt-cinq (4x20+5)", "90: quatre-vingt-dix (4x20+10)", "100: cent"], "explanation": "¡No entres en pánico! Para los números del 70 al 99, los franceses hacen cuentas mentales: 70 es 'sesenta y diez', 80 es 'cuatro veintes' y 90 es 'cuatro veintes diez'. Con un poco de práctica sale automático.", "pronunciation": "En 'quatre-vingts', la 'g', la 't' y la 's' son mudas: 'ka-tre-van'.", "practice": "Leé en voz alta estos precios: 72 €, 80 €, 89 €, 95 € y 100 €."}, {"id": "w6l5", "day": 5, "title": "Hacer las compras en el mercado o súper", "vocab": ["Un kilo de... (Un kilo de...)", "Une bouteille de... (Una botella de...)", "Un morceau de... (Un pedazo de...)", "Les légumes (Las verduras)", "Les fruits (Las frutas)", "Payer par carte / en espèces (Pagar con tarjeta / en efectivo)"], "explanation": "Cuando indicás una cantidad exacta (un kilo, un litro, una botella, mucho), ya no usás 'du' o 'de la', usás siempre 'de' solo (ej: 'un kilo de pommes', 'beaucoup de fromage').", "pronunciation": "'Les légumes' se pronuncia 'le le-güm'.", "practice": "Armá tu lista de compras de 4 productos con cantidades y decila en voz alta."}, {"id": "w6l6", "day": 6, "title": "Diálogo completo en un restaurante", "vocab": ["Une table pour deux personnes (Una mesa para dos personas)", "La carte / Le menu (La carta / El menú)", "En entrée / Comme plat principal / En dessert (De entrada / Plato principal / Postre)", "C'est délicieux ! (¡Está riquísimo!)", "Bon appétit ! (¡Buen provecho!)", "Gardez la monnaie (Quédese con el vuelto)"], "explanation": "En Francia, 'le menu' suele ser el menú fijo del día (entrada + plato + postre a precio cerrado), mientras que 'la carte' es toda la carta de platos.", "pronunciation": "'Bon appétit' hace liaison entre 'bon' y 'appétit': 'bo-na-pe-tí'.", "practice": "Representá toda la escena: pedir mesa, pedir plato y bebida, comentar que está rico y pedir la cuenta."}]}, {"week": 7, "title": "Ciudad, direcciones y transporte", "subtitle": "Moverte por una ciudad francófona sin perderte.", "lessons": [{"id": "w7l1", "day": 1, "title": "Lugares de la ciudad", "vocab": ["La rue / L'avenue (La calle / La avenida)", "La place (La plaza)", "La gare (La estación de tren)", "L'arrêt de bus / Le métro (La parada de colectivo / El subte)", "La boulangerie / La pharmacie (La panadería / La farmacia)", "Le musée / Le parc (El museo / El parque)"], "explanation": "Fijate en las terminaciones en '-ie' (boulangerie, pharmacie, librairie): casi siempre indican comercios o lugares y son femeninos.", "pronunciation": "En 'La boulangerie', la 'e' del medio casi desaparece al hablar rápido: 'bu-lan-ye-rí'.", "practice": "Nombrá 4 lugares que hay cerca de tu casa usando 'Dans mon quartier, il y a...' (En mi barrio hay...)."}, {"id": "w7l2", "day": 2, "title": "Pedir y dar indicaciones", "vocab": ["Où est... ? (¿Dónde está...?)", "Tout droit (Todo derecho)", "À gauche (A la izquierda)", "À droite (A la derecha)", "Au coin de la rue (En la esquina)", "C'est loin / C'est près (Está lejos / Está cerca)"], "explanation": "Para pedir una dirección en la calle, empezá siempre con 'Excusez-moi, où est... ?' o 'Pour aller à..., s'il vous plaît ?'.", "pronunciation": "'Tout droit' suena 'tu druá' (con la 't' final muda). 'À gauche' suena 'a gosh'.", "practice": "Practicá dar esta indicación en voz alta: 'Allez tout droit, puis tournez à gauche. La gare est à droite.'"}, {"id": "w7l3", "day": 3, "title": "El imperativo para dar instrucciones", "vocab": ["Allez... (Vaya...)", "Tournez... (Doble...)", "Prenez... (Tome...)", "Traversez... (Cruce...)", "Continuez... (Siga...)", "Regardez ! (¡Mire!)"], "explanation": "Para dar indicaciones a un desconocido en la calle, usamos la forma de 'vous' sin decir la palabra 'vous': 'Tournez à droite' (Doble a la derecha), 'Prenez la première rue' (Tome la primera calle).", "pronunciation": "Todas estas formas terminan en '-ez', que se pronuncia como una 'e' cerrada bien clara: 'a-lé', 'tur-né', 'pre-né'.", "practice": "Explicá en 3 pasos cómo llegar desde la puerta de tu casa hasta la parada de transporte más cercana."}, {"id": "w7l4", "day": 4, "title": "Los medios de transporte y preposiciones (en / à)", "vocab": ["En métro / En bus / En train (En subte / En bondi / En tren)", "En voiture / En taxi (En auto / En taxi)", "En avion (En avión)", "À pied (A pie)", "À vélo (En bici)", "Un billet / Un ticket (Un boleto / Un pasaje)"], "explanation": "La regla es muy visual: si te metés adentro del vehículo (auto, tren, subte, avión), usás 'en'. Si vas arriba o caminando (a pie, en bici, a caballo), usás 'à'.", "pronunciation": "'À pied' suena 'a pié' (la 'd' final es muda).", "practice": "Decí cómo vas al trabajo, al estudio o al centro usando 'Je vais... en/à...'."}, {"id": "w7l5", "day": 5, "title": "Verbos de movimiento: PRENDRE (Tomar) y VENIR (Venir)", "vocab": ["Je prends, Tu prends, Il/Elle prend (Tomar/agarrar)", "Nous prenons, Vous prenez, Ils/Elles prennent", "Je viens, Tu viens, Il/Elle vient (Venir)", "Nous venons, Vous venez, Ils/Elles viennent", "Je viens d'Argentine (Vengo de Argentina)", "Je prends le métro (Tomo el subte)"], "explanation": "'Prendre' se usa tanto para tomar un transporte ('prendre le bus') como para pedir comida/bebida ('prendre un café'). 'Venir de' sirve para decir de dónde venís o tu origen.", "pronunciation": "'Je prends' suena 'ye pran' (nasal). 'Je viens' suena 'ye vian' (nasal).", "practice": "Armá 3 frases con 'Je prends...' y 2 frases con 'Je viens de...'."}, {"id": "w7l6", "day": 6, "title": "Simulación: en la estación de tren o subte", "vocab": ["Un aller simple (Un pasaje de ida)", "Un aller-retour (Ida y vuelta)", "À quelle heure part le train ? (¿A qué hora sale el tren?)", "Le quai numéro... (El andén número...)", "C'est quelle ligne ? (¿Qué línea es?)", "Bon voyage ! (¡Buen viaje!)"], "explanation": "Hoy integrás todo el vocabulario urbano para comprar un boleto y preguntar por combinaciones de transporte.", "pronunciation": "'Le quai' (el andén) suena 'le ké'.", "practice": "Representá el diálogo en boletería: 'Bonjour, je voudrais un aller-retour pour Lyon, s'il vous plaît. C'est quel quai ?'"}]}, {"week": 8, "title": "Tiempo libre, invitaciones y futuro cercano", "subtitle": "Hablar de tus hobbies, hacer planes y aceptar o rechazar invitaciones.", "lessons": [{"id": "w8l1", "day": 1, "title": "Hobbies, deportes y actividades culturales", "vocab": ["Lire un livre (Leer un libro)", "Regarder un film / une série (Mirar una peli / serie)", "Écouter de la musique (Escuchar música)", "Voyager (Viajar)", "Jouer au football / au tennis (Jugar al fútbol / tenis)", "Jouer de la guitare / du piano (Tocar la guitarra / el piano)"], "explanation": "Fijate en el verbo 'jouer': cuando es un deporte o juego, se usa 'jouer à' (au foot, aux cartes). Cuando es un instrumento musical, se usa 'jouer de' (du piano, de la guitare).", "pronunciation": "'Lire' suena 'lir' (con la 'e' final muda).", "practice": "Contá 3 cosas que te gusta hacer en tu tiempo libre usando 'J'aime...'."}, {"id": "w8l2", "day": 2, "title": "Expresar gustos e intensidad (Adorer, Aimer, Détester)", "vocab": ["J'adore... (Me encanta...)", "J'aime beaucoup... (Me gusta mucho...)", "J'aime bien... (Me cae bien / Me gusta)", "Je n'aime pas... (No me gusta...)", "Je déteste... (Odio / Detesto...)", "Moi aussi / Moi non plus (Yo también / Yo tampoco)"], "explanation": "Un matiz muy francés: si decís 'J'aime bien' sobre una actividad o comida, significa 'me gusta'. Pero si lo decís sobre una persona ('Je t'aime bien'), significa 'me caés bien' (amigo), mientras que 'Je t'aime' es 'te amo'.", "pronunciation": "'Moi aussi' suena 'muá o-sí'.", "practice": "Armá una escala de gustos con 4 cosas reales de tu vida: desde 'J'adore...' hasta 'Je déteste...'."}, {"id": "w8l3", "day": 3, "title": "El futuro cercano (Futur proche): Aller + infinitivo", "vocab": ["Je vais voyager (Voy a viajar)", "Tu vas manger (Vas a comer)", "Il/Elle va travailler (Va a trabajar)", "On va sortir (Vamos a salir)", "Ce week-end (Este fin de semana)", "Demain (Mañana)"], "explanation": "¡Es idéntico al español! Conjugás el verbo 'aller' en presente y le pegás el verbo principal en infinitivo (sin conjugar). Es la forma más usada para hablar de planes inmediatos.", "pronunciation": "En 'On va sortir', la 'r' final de 'sortir' SÍ se pronuncia suave ('sor-tir').", "practice": "Contá 3 planes que tenés para mañana o este finde usando 'Demain, je vais...' y 'Ce week-end, je vais...'."}, {"id": "w8l4", "day": 4, "title": "Verbos modales: POUVOIR (Poder) y VOULOIR (Querer)", "vocab": ["Je veux / Tu veux / Il veut (Querer)", "Je peux / Tu peux / Il peut (Poder)", "On peut... ? (¿Podemos...?)", "Tu veux venir ? (¿Querés venir?)", "Je ne peux pas (No puedo)", "Il faut... (Hay que / Es necesario...)"], "explanation": "Con 'pouvoir' y 'vouloir' más un verbo en infinitivo podés proponer cualquier plan: 'Tu veux aller au cinéma ?' (¿Querés ir al cine?). 'Il faut' es invariable y significa 'hay que' ('Il faut étudier').", "pronunciation": "'Je veux' (quiero) y 'Je peux' (puedo) tienen la vocal 'eu', que se hace poniendo la boca como para decir 'o' pero diciendo 'e'.", "practice": "Hacé dos invitaciones en voz alta usando 'Tu veux...' y respondé una aceptando y otra rechazando."}, {"id": "w8l5", "day": 5, "title": "Aceptar, rechazar y proponer un encuentro", "vocab": ["Oui, avec plaisir ! (¡Sí, con mucho gusto!)", "Bonne idée ! (¡Buena idea!)", "Désolé(e), je ne peux pas (Perdón, no puedo)", "Je suis occupé(e) (Estoy ocupado/a)", "On se retrouve à quelle heure ? (¿A qué hora nos encontramos?)", "À samedi ! (¡Hasta el sábado!)"], "explanation": "Cuando rechazás una invitación en francés, siempre se suaviza con 'Désolé(e)' (Lo siento/Perdón) o 'C'est dommage' (Qué lástima) seguido de una excusa corta.", "pronunciation": "'Désolé' suena 'de-zo-lé' (la 's' entre dos vocales suena como una 'z' vibrada).", "practice": "Practicá este intercambio: 'Tu veux prendre un café demain ?' -> 'Oui, avec plaisir ! On se retrouve à 17 heures ?'"}, {"id": "w8l6", "day": 6, "title": "El clima y los planes según el tiempo", "vocab": ["Quel temps fait-il ? (¿Qué tiempo hace?)", "Il fait beau / Il fait mauvais (Hace lindo / Hace feo)", "Il fait chaud / Il fait froid (Hace calor / Hace frío)", "Il pleut (Llueve)", "Il y a du soleil (Hay sol)", "Le printemps, l'été, l'automne, l'hiver (Las 4 estaciones)"], "explanation": "Para el clima usamos casi siempre 'Il fait + adjetivo' (il fait chaud, il fait froid), excepto para lluvia y nieve que tienen sus propios verbos ('il pleut' = llueve).", "pronunciation": "'Il fait chaud' suena 'il fe sho'. 'Il fait froid' suena 'il fe fruá'.", "practice": "Decí cómo está el clima hoy en tu ciudad y qué vas a hacer según el tiempo."}]}, {"week": 9, "title": "Pasado y experiencias", "subtitle": "Contar qué hiciste ayer, el fin de semana pasado o en tus vacaciones.", "lessons": [{"id": "w9l1", "day": 1, "title": "Introducción al Passé Composé con AVOIR", "vocab": ["J'ai mangé (Comí / He comido)", "J'ai parlé (Hablé)", "J'ai regardé (Miré)", "J'ai travaillé (Trabajé)", "J'ai acheté (Compré)", "Hier (Ayer)"], "explanation": "El tiempo pasado más usado en francés se llama 'Passé Composé' y se arma con dos partes: el verbo 'avoir' en presente + el participio del verbo. Para todos los verbos en '-er', el participio se hace sacando la '-er' y poniendo '-é'.", "pronunciation": "¡Ojo! 'Je mange' (presente) suena 'ye mansh', pero 'J'ai mangé' (pasado) suena 'yé man-shé'. ¡La 'é' final marca la diferencia entre presente y pasado!", "practice": "Contá 3 cosas que hiciste ayer usando 'Hier, j'ai...'."}, {"id": "w9l2", "day": 2, "title": "Participios irregulares más usados", "vocab": ["Faire -> J'ai fait (Hice)", "Prendre -> J'ai pris (Tomé/Comí)", "Boire -> J'ai bu (Tomé/Bebí)", "Voir -> J'ai vu (Vi)", "Lire -> J'ai lu (Leí)", "Avoir -> J'ai eu (Tuve)"], "explanation": "Algunos verbos muy comunes tienen participios cortos e irregulares, pero se usan igual con 'avoir' adelante: 'J'ai fait du sport' (Hice deporte), 'J'ai vu un bon film' (Vi una buena peli).", "pronunciation": "'J'ai eu' (tuve) se pronuncia 'yé ü' (con la u francesa cerrada).", "practice": "Decí 3 frases sobre tu fin de semana pasado usando 'fait', 'vu' y 'pris'."}, {"id": "w9l3", "day": 3, "title": "El Passé Composé con ÊTRE (verbos de movimiento)", "vocab": ["Je suis allé(e) (Fui)", "Je suis venu(e) (Vine)", "Je suis arrivé(e) (Llegué)", "Je suis parti(e) (Me fui / Salí)", "Je suis resté(e) (Me quedé)", "Je suis né(e) (Nací)"], "explanation": "Un grupo chiquito de verbos que indican desplazamiento (ir, venir, llegar, salir, entrar) o cambio de estado usan 'être' en lugar de 'avoir' como auxiliar. Cuando usás 'être', agregás una '-e' si sos mujer y '-s' si es plural.", "pronunciation": "'Je suis allé' y 'Je suis allée' se pronuncian exactamente igual: 'ye süi-za-lé'.", "practice": "Decí adónde fuiste la semana pasada y cuándo naciste: 'La semaine dernière, je suis allé(e) à...' y 'Je suis né(e) en...'."}, {"id": "w9l4", "day": 4, "title": "La negación y marcadores del pasado", "vocab": ["Je n'ai pas mangé (No comí)", "Je ne suis pas allé(e) (No fui)", "Hier soir (Anoche)", "La semaine dernière (La semana pasada)", "L'année dernière (El año pasado)", "Il y a deux jours (Hace dos días)"], "explanation": "Para negar en pasado, el sándwich 'ne ... pas' abraza solo al verbo auxiliar ('avoir' o 'être'): 'Je n'ai pas travaillé' (No trabajé). Un dato útil: 'Il y a' + tiempo significa 'hace...' (il y a trois ans = hace tres años).", "pronunciation": "'Hier soir' suena 'ier suar'.", "practice": "Decí 2 cosas que hiciste anoche y 2 cosas que NO hiciste."}, {"id": "w9l5", "day": 5, "title": "Hablar de tus últimas vacaciones", "vocab": ["Les vacances (Las vacaciones)", "La plage / La montagne (La playa / La montaña)", "L'hôtel (El hotel)", "Visiter (Visitar)", "Se reposer (Descansar)", "C'était super ! (¡Estuvo genial!)"], "explanation": "Para describir cómo estuvo algo en el pasado (el clima, la comida, el lugar), usá la expresión mágica 'C'était...' (Era / Estuvo): 'C'était super !', 'C'était très beau !'.", "pronunciation": "'C'était' se pronuncia 'se-té'.", "practice": "Contá en 4 frases adónde fuiste en tus últimas vacaciones, qué visitaste y cómo estuvo."}, {"id": "w9l6", "day": 6, "title": "Conversación: ¿Qué hiciste el fin de semana?", "vocab": ["Qu'est-ce que tu as fait ? (¿Qué hiciste?)", "Rien de spécial (Nada especial)", "J'ai dormi (Dormí)", "J'ai vu des amis (Vi a unos amigos)", "On a dîné ensemble (Cenamos juntos)", "Et toi, tu as passé un bon week-end ? (¿Y vos, pasaste un buen finde?)"], "explanation": "Esta es la pregunta número uno de los lunes en cualquier oficina o facultad francófona. Ya tenés todas las herramientas para responderla con fluidez.", "pronunciation": "'Qu'est-ce que tu as fait ?' suena 'kes-ke tü a fé'.", "practice": "Respondé en voz alta durante 45 segundos la pregunta: 'Qu'est-ce que tu as fait le week-end dernier ?'"}]}, {"week": 10, "title": "Opiniones, comparaciones y emociones", "subtitle": "Expresar lo que pensás, sentís y comparar opciones.", "lessons": [{"id": "w10l1", "day": 1, "title": "Dar tu opinión (Je pense que, À mon avis)", "vocab": ["Je pense que... (Pienso que...)", "Je crois que... (Creo que...)", "À mon avis... (En mi opinión...)", "Pour moi... (Para mí...)", "Je suis d'accord (Estoy de acuerdo)", "Je ne suis pas d'accord (No estoy de acuerdo)"], "explanation": "Cuando querés dar tu punto de vista sin imponerlo, empezá con 'À mon avis,' o 'Je pense que...'. Recordá que 'que' se convierte en 'qu'' delante de una vocal ('Je pense qu'il est sympa').", "pronunciation": "'À mon avis' hace liaison entre 'mon' y 'avis': 'a mo-na-ví'.", "practice": "Dá tu opinión sobre aprender francés y sobre tu ciudad usando 'Je pense que...' y 'À mon avis...'."}, {"id": "w10l2", "day": 2, "title": "Justificar con PARCE QUE (Porque)", "vocab": ["Pourquoi ? (¿Por qué?)", "Parce que... (Porque...)", "C'est intéressant (Es interesante)", "C'est facile / C'est difficile (Es fácil / Es difícil)", "C'est important (Es importante)", "C'est pratique (Es práctico)"], "explanation": "La regla es igual al español: 'Pourquoi ?' (separado) para preguntar y 'Parce que...' (en dos palabras) para responder.", "pronunciation": "'Parce que' se pronuncia 'pars-ke'.", "practice": "Respondé en voz alta: 'Pourquoi tu étudies le français ?' -> 'J'étudie le français parce que...'"}, {"id": "w10l3", "day": 3, "title": "Comparar cosas: Plus... que, Moins... que, Aussi... que", "vocab": ["Plus + adjetivo + que (Más... que)", "Moins + adjetivo + que (Menos... que)", "Aussi + adjetivo + que (Tan... como)", "Meilleur / Meilleure (Mejor)", "Plus grand que (Más grande que)", "Moins cher que (Más barato / menos caro que)"], "explanation": "Para comparar en francés ponés el adjetivo en el medio: 'Paris est plus cher que Buenos Aires' (París es más caro que Buenos Aires). Ojo: nunca digas 'plus bon', se dice 'meilleur' (mejor).", "pronunciation": "En la comparación, la 's' de 'plus' generalmente se pronuncia suave o se omite antes de consonante ('plü gran ke'), pero antes de vocal suena 'z' ('plü-zin-te-re-san').", "practice": "Hacé 3 comparaciones reales: entre dos ciudades, dos comidas o dos medios de transporte."}, {"id": "w10l4", "day": 4, "title": "Emociones y estados de ánimo", "vocab": ["Heureux / Heureuse (Feliz)", "Triste (Triste)", "Stressé(e) (Estresado/a)", "Calme / Détendu(e) (Tranquilo/a / Relajado/a)", "En colère (Enojado/a)", "Surpris(e) (Sorprendido/a)"], "explanation": "Para decir cómo te sentís, podés usar 'Je suis + emoción' o 'Je me sens + emoción' (Me siento...).", "pronunciation": "'Heureux' suena 'ö-rö'. Su femenino 'Heureuse' suena 'ö-röz'.", "practice": "Decí cómo te sentís hoy y cómo te sentís los viernes a la tarde."}, {"id": "w10l5", "day": 5, "title": "Expresar estados físicos (Tener hambre, sed, frío...)", "vocab": ["J'ai faim (Tengo hambre)", "J'ai soif (Tengo sed)", "J'ai chaud / J'ai froid (Tengo calor / Tengo frío)", "J'ai sommeil (Tengo sueño)", "J'ai peur (Tengo miedo)", "J'ai mal à la tête / au ventre (Me duele la cabeza / la panza)"], "explanation": "¡Igual que en español! Todas estas sensaciones físicas se expresan con el verbo 'avoir' (tener), nunca con 'être'. Para dolores físicos usás 'J'ai mal à + parte del cuerpo'.", "pronunciation": "'J'ai faim' suena 'yé fan' (nasal). 'J'ai soif' suena 'yé suaf' (pronunciando la 'f').", "practice": "Decí qué sensación física tenés ahora mismo y qué hacés cuando tenés hambre o sueño."}, {"id": "w10l6", "day": 6, "title": "Debate corto: expresar preferencias y emociones", "vocab": ["Je préfère... (Prefiero...)", "C'est mieux (Es mejor)", "C'est dommage (Qué lástima)", "C'est génial ! (¡Es genial!)", "Ça dépend (Depende)", "Tu as raison (Tenés razón)"], "explanation": "Hoy combinás opinión, comparación y justificación para sostener una mini-charla con argumentos.", "pronunciation": "'Je préfère' suena 'ye pre-fer'.", "practice": "Elegí entre viajar en avión o en tren, o entre vivir en una ciudad grande o un pueblo, y justificá tu respuesta en 4 oraciones."}]}, {"week": 11, "title": "Expresiones cotidianas y conversaciones", "subtitle": "Sonar mucho más natural con frases hechas y muletillas reales.", "lessons": [{"id": "w11l1", "day": 1, "title": "Muletillas y expresiones para ganar tiempo al hablar", "vocab": ["Alors... (Entonces / Bueno...)", "Bon... (Bueno...)", "Eh bien... / Ben... (Pues / Y bueno...)", "En fait... (De hecho / En realidad...)", "Tu vois ? / Vous voyez ? (¿Viste? / ¿Ve?)", "C'est-à-dire... (Es decir...)"], "explanation": "Los francófonos usan muchísimo 'Alors', 'Bon' y 'En fait' para arrancar una frase o pensar qué van a decir después. Incorporarlas hace que tu francés suene 10 veces más natural.", "pronunciation": "'En fait' en el habla cotidiana casi siempre pronuncia la 't' final: 'an fet'.", "practice": "Respondé a 'Qu'est-ce que tu fais ce soir ?' arrancando con 'Alors, en fait, je vais...'."}, {"id": "w11l2", "day": 2, "title": "Frases de supervivencia cuando no entendés", "vocab": ["Je ne comprends pas (No entiendo)", "Pouvez-vous répéter, s'il vous plaît ? (¿Puede repetir, por favor?)", "Plus lentement, s'il vous plaît (Más despacio, por favor)", "Comment on dit... en français ? (¿Cómo se dice... en francés?)", "Qu'est-ce que ça veut dire ? (¿Qué significa eso?)", "Je parle un petit peu français (Hablo un poquito de francés)"], "explanation": "No tengas miedo de frenar una conversación para pedir que hablen más despacio. A los francófonos les encanta ver que hacés el esfuerzo de hablar su idioma.", "pronunciation": "'Plus lentement' suena 'plü lant-man'.", "practice": "Memorizá y repetí 3 veces de corrido: 'Excusez-moi, je ne comprends pas. Pouvez-vous parler plus lentement, s'il vous plaît ?'"}, {"id": "w11l3", "day": 3, "title": "Expresiones idiomáticas francesas muy usadas", "vocab": ["Pas de souci ! (¡No hay problema! / ¡No te preocupes!)", "C'est pas grave (No pasa nada / No es grave)", "J'ai la flemme (Tengo fiaca)", "C'est trop bien ! (¡Está buenísimo!)", "Bref... (En resumen / En fin...)", "Bon courage ! (¡Ánimo! / ¡Suerte con eso!)"], "explanation": "¡Dato cultural! 'J'ai la flemme' es la traducción exacta de nuestro 'tengo fiaca'. Y 'Bon courage !' se dice todo el tiempo cuando alguien tiene que trabajar, estudiar o hacer un trámite.", "pronunciation": "'Pas de souci' suena 'pa de su-sí'. 'J'ai la flemme' suena 'yé la flem'.", "practice": "Armá 3 mini-situaciones donde usarías 'Pas de souci !', 'J'ai la flemme' y 'Bon courage !'."}, {"id": "w11l4", "day": 4, "title": "Hablar por teléfono o mandar audios/mensajes", "vocab": ["Allô ? (¿Hola? - solo al atender el teléfono)", "C'est [nombre] à l'appareil (Habla [nombre])", "Je t'appelle pour... (Te llamo para...)", "On s'appelle plus tard (Hablamos más tarde)", "Je t'envoie un message (Te mando un mensaje)", "Bisous (Besos - despedida informal)"], "explanation": "'Allô ?' se usa ÚNICAMENTE al atender una llamada telefónica (nunca para saludar en persona). En mensajes escritos informales, se suele cerrar con 'Bisous' o 'À plus !' (Nos vemos).", "pronunciation": "'Allô' suena 'a-ló'.", "practice": "Simulá un audio de WhatsApp de 20 segundos para un amigo francófono invitándolo a tomar algo."}, {"id": "w11l5", "day": 5, "title": "De compras en una tienda de ropa", "vocab": ["Je cherche... (Busco...)", "Quelle taille ? (¿Qué talle?)", "Je peux l'essayer ? (¿Me lo puedo probar?)", "La cabine d'essayage (El probador)", "Ça me va bien / C'est trop grand (Me queda bien / Me queda muy grande)", "Je le prends (Me lo llevo)"], "explanation": "Cuando entrás a un local en Francia, siempre saludá con 'Bonjour !' al vendedor. Si te preguntan 'Je peux vous aider ?' (¿Puedo ayudarlo?), podés responder 'Non merci, je regarde' (No gracias, estoy mirando).", "pronunciation": "'La taille' (el talle) suena 'la tay'.", "practice": "Practicá pedir un talle más chico o más grande: 'Je voudrais essayer ce pull en taille M, s'il vous plaît.'"}, {"id": "w11l6", "day": 6, "title": "Conversación fluida: conocer a alguien en una fiesta o evento", "vocab": ["Tu connais [nombre] ? (¿Conocés a [nombre]?)", "Qu'est-ce que tu fais dans la vie ? (¿A qué te dedicás?)", "Depuis quand tu es ici ? (¿Desde cuándo estás acá?)", "Tu aimes la musique / le cinéma ? (¿Te gusta la música / el cine?)", "On garde le contact ? (¿Seguimos en contacto?)", "C'était sympa de discuter avec toi (Estuvo lindo charlar con vos)"], "explanation": "'Qu'est-ce que tu fais dans la vie ?' es la forma más natural de preguntar de qué trabajás o qué estudiás.", "pronunciation": "'Dans la vie' suena 'dan la vi'.", "practice": "Sostené un diálogo imaginario de 1 minuto presentándote, contando a qué te dedicás y qué te gusta hacer."}]}, {"week": 12, "title": "Integración, repaso y evaluación final A1", "subtitle": "Consolidar todo lo aprendido y celebrar tu nivel A1.", "lessons": [{"id": "w12l1", "day": 1, "title": "Repaso integral: Presentación, familia y rutina", "vocab": ["Je m'appelle / J'ai ... ans / Je suis argentin(e)", "J'habite à... avec...", "Je travaille / J'étudie...", "Le matin / L'après-midi / Le soir", "D'abord / Ensuite / Enfin", "Mon / Ma / Mes"], "explanation": "Hoy repasamos los pilares de las semanas 1 a 5: identidad, números, verbos regulares en presente, reflexivos y posesivos.", "pronunciation": "Prestá atención a no pronunciar las '-e', '-s' y '-t' mudas al final de las palabras.", "practice": "Hacé un monólogo completo de 1 minuto presentando tu identidad, tu familia y tu rutina semanal sin leer."}, {"id": "w12l2", "day": 2, "title": "Repaso integral: Ciudad, compras y restaurante", "vocab": ["Je voudrais... / Je vais prendre...", "Du / De la / De l' / Des", "Combien ça coûte ? / C'est combien ?", "Où est... ? / Tout droit / À gauche / À droite", "En métro / En bus / À pied", "L'addition, s'il vous plaît"], "explanation": "Hoy repasamos las semanas 6 y 7: pedir comida con partitivos, manejar precios hasta 100 y moverte por la ciudad.", "pronunciation": "Practicá las vocales nasales (pain, vin, bon, croissant) y el sonido 'u' vs 'ou'.", "practice": "Resolvé 3 situaciones rápidas en voz alta: pedir en un café, preguntar cómo llegar al museo y comprar un boleto de tren."}, {"id": "w12l3", "day": 3, "title": "Repaso integral: Tiempos verbales (Presente, Pasado y Futuro)", "vocab": ["Aujourd'hui, je travaille (Presente)", "Hier, j'ai travaillé / je suis allé(e) (Passé composé)", "Demain, je vais travailler (Futur proche)", "J'ai fait / J'ai vu / J'ai pris", "C'était super / Ça va être génial", "Parce que / Mais / Donc"], "explanation": "¡Ya manejás los tres ejes temporales básicos! Presente para hábitos, Passé Composé para experiencias pasadas y Futur Proche para planes.", "pronunciation": "Diferenciá claramente 'Je mange' (presente) de 'J'ai mangé' (pasado).", "practice": "Contá en 6 oraciones qué hiciste el finde pasado, qué hacés hoy y qué vas a hacer el próximo finde."}, {"id": "w12l4", "day": 4, "title": "Simulacro Oral A1 — Parte 1: Entrevista dirigida", "vocab": ["Pouvez-vous vous présenter ? (¿Puede presentarse?)", "Parlez-moi de votre famille (Hábleme de su familia)", "Quelle est votre profession ? (¿Cuál es su profesión?)", "Quels sont vos loisirs ? (¿Cuáles son sus pasatiempos?)", "Pourquoi apprenez-vous le français ? (¿Por qué aprende francés?)", "Quels sont vos projets ? (¿Cuáles son sus proyectos?)"], "explanation": "En un examen oficial DELF A1, la primera parte consiste en responder preguntas personales del examinador. Respuestas claras, completas y sin apuro.", "pronunciation": "Mantené un ritmo pausado y seguro. Si te equivocás, corregite con naturalidad ('Pardon, je veux dire...').", "practice": "Respondé en voz alta cada una de las 6 preguntas del vocabulario de hoy como si estuvieras en una entrevista real."}, {"id": "w12l5", "day": 5, "title": "Simulacro Oral A1 — Parte 2: Interacción y juego de roles", "vocab": ["Bonjour madame / monsieur", "Je voudrais réserver... (Quisiera reservar...)", "Est-ce que vous avez... ? (¿Tiene...?)", "Quel est le prix ? (¿Cuál es el precio?)", "C'est parfait, merci beaucoup", "Bonne journée, au revoir !"], "explanation": "La segunda parte del nivel A1 evalúa tu capacidad para resolver un trámite o compra cotidiana (en una tienda, hotel, estación o restaurante).", "pronunciation": "Cuidá las fórmulas de cortesía al principio y al final: hacen la mitad del éxito en Francia.", "practice": "Actuá esta situación: llegás a un hotel en París, tenés una reserva a tu nombre para 3 noches y preguntás a qué hora es el desayuno."}, {"id": "w12l6", "day": 6, "title": "¡Evaluación Final A1 y Celebración! 🎉", "vocab": ["Félicitations ! (¡Felicitaciones!)", "J'ai réussi ! (¡Lo logré!)", "Je peux communiquer en français (Puedo comunicarme en francés)", "C'est le début d'une belle aventure (Es el comienzo de una linda aventura)", "Merci beaucoup ! (¡Muchas gracias!)", "Vive le français ! (¡Viva el francés!)"], "explanation": "¡Llegaste al final de las 72 clases! Arrancaste desde cero absoluto y hoy podés presentarte, describir tu entorno, pedir comida, ubicarte en una ciudad, hablar en pasado y futuro, y dar tu opinión.", "pronunciation": "Leé el vocabulario de hoy con una sonrisa y todo el orgullo por tu constancia de 10 minutos diarios.", "practice": "Grabá un audio final de 1 a 2 minutos en francés contándote a vos mismo todo lo que sabés decir hoy. ¡Félicitations !"}]}];
+
+    // State management via localStorage
+    const STORAGE_KEY_PROGRESS = 'flc_completed_lessons_v1';
+    const STORAGE_KEY_NOTES_VOCAB = 'flc_notes_vocab_v1';
+    const STORAGE_KEY_NOTES_GRAMMAR = 'flc_notes_grammar_v1';
+
+    let completedLessons = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '[]'));
+    let currentFilter = 'all';
+    let currentModalLessonId = null;
+
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify([...completedLessons]));
+      updateDashboard();
+      renderCurriculum();
+    }
+
+    // Text-to-Speech in French (Web Speech API)
+    function speakFrench(text) {
+      if (!('speechSynthesis' in window)) {
+        alert('Tu navegador no soporta síntesis de voz automática.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      // Extract French part before '(' or '->'
+      let cleanText = text.split('(')[0].split('->')[0].replace(/^[0-9]+:\s*/, '').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'fr-FR';
+      utterance.rate = 0.88; // Slightly slower for A0-A1 learners
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Update Dashboard Stats, Ring & Weekly Bars
+    function updateDashboard() {
+      const total = 72;
+      const done = completedLessons.size;
+      const pct = Math.round((done / total) * 100);
+
+      document.getElementById('progress-percent').textContent = pct + '%';
+      document.getElementById('completed-count').textContent = done;
+      document.getElementById('minutes-invested').textContent = done * 10;
+
+      // SVG Ring circumference = 2 * pi * 46 ≈ 289.02
+      const circumference = 289.02;
+      const offset = circumference - (pct / 100) * circumference;
+      document.getElementById('progress-circle').style.strokeDashoffset = offset;
+
+      // Level badge update
+      const badge = document.getElementById('level-status-badge');
+      if (done === 0) badge.textContent = 'Nivel A0 · Listo para empezar';
+      else if (done < 24) badge.textContent = 'Nivel A0+ · Primeros pasos';
+      else if (done < 54) badge.textContent = 'Camino a A1 · En progreso';
+      else if (done < 72) badge.textContent = 'Nivel A1 · Recta final';
+      else badge.textContent = '🎉 ¡Nivel A1 Completado!';
+
+      // Weekly bars & completed weeks count
+      let completedWeeks = 0;
+      const barsContainer = document.getElementById('weekly-bars');
+      barsContainer.innerHTML = '';
+
+      CURRICULUM.forEach(weekObj => {
+        const weekDoneCount = weekObj.lessons.filter(l => completedLessons.has(l.id)).length;
+        if (weekDoneCount === 6) completedWeeks++;
+        const weekPct = Math.round((weekDoneCount / 6) * 100);
+
+        const barItem = document.createElement('div');
+        barItem.className = 'w-bar-item';
+        barItem.title = `Semana ${weekObj.week}: ${weekDoneCount}/6 clases`;
+        barItem.innerHTML = `
+          <div class="w-bar-track">
+            <div class="w-bar-fill ${weekDoneCount === 6 ? 'complete' : ''}" style="height: ${Math.max(weekPct, 8)}%"></div>
+          </div>
+          <span class="w-bar-label">S${weekObj.week}</span>
+        `;
+        barItem.addEventListener('click', () => {
+          const targetWeekEl = document.getElementById('week-card-' + weekObj.week);
+          if (targetWeekEl) {
+            targetWeekEl.classList.add('open');
+            targetWeekEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+        barsContainer.appendChild(barItem);
+      });
+
+      document.getElementById('weeks-completed').textContent = completedWeeks;
+
+      // Update Next Suggested Lesson Banner
+      let nextLesson = null;
+      let nextWeek = null;
+      for (const w of CURRICULUM) {
+        for (const l of w.lessons) {
+          if (!completedLessons.has(l.id)) {
+            nextLesson = l;
+            nextWeek = w;
+            break;
+          }
+        }
+        if (nextLesson) break;
+      }
+
+      const nextTag = document.getElementById('next-lesson-tag');
+      const nextTitle = document.getElementById('next-lesson-title');
+      const nextSub = document.getElementById('next-lesson-sub');
+      const openNextBtn = document.getElementById('btn-open-next');
+
+      if (nextLesson) {
+        nextTag.textContent = `Tu próxima clase · Semana ${nextWeek.week} · Día ${nextLesson.day}`;
+        nextTitle.textContent = nextLesson.title;
+        nextSub.textContent = nextWeek.title;
+        openNextBtn.onclick = () => openLessonModal(nextWeek.week, nextLesson.id);
+      } else {
+        nextTag.textContent = '¡Programa Completado! 🎉';
+        nextTitle.textContent = '¡Completaste las 72 clases del programa A0 → A1!';
+        nextSub.textContent = 'Podés repasar cualquier semana o usar tus notas personales.';
+        openNextBtn.onclick = () => openLessonModal(12, 'w12l6');
+      }
+    }
+
+    // Render 12-Week Curriculum
+    function renderCurriculum() {
+      const container = document.getElementById('curriculum-container');
+      // Remember which weeks are currently open
+      const openWeeks = new Set();
+      document.querySelectorAll('.week-card.open').forEach(el => {
+        openWeeks.add(el.dataset.week);
+      });
+      // Default open Week 1 or the week of the next uncompleted lesson on first load
+      if (openWeeks.size === 0 && container.children.length === 0) {
+        let firstPendingWeek = '1';
+        for (const w of CURRICULUM) {
+          if (w.lessons.some(l => !completedLessons.has(l.id))) {
+            firstPendingWeek = String(w.week);
+            break;
+          }
+        }
+        openWeeks.add(firstPendingWeek);
+      }
+
+      container.innerHTML = '';
+
+      CURRICULUM.forEach(weekObj => {
+        const doneInWeek = weekObj.lessons.filter(l => completedLessons.has(l.id)).length;
+        const isWeekComplete = doneInWeek === 6;
+
+        if (currentFilter === 'completed' && !isWeekComplete) return;
+        if (currentFilter === 'pending' && isWeekComplete) return;
+
+        const weekCard = document.createElement('div');
+        weekCard.className = `week-card ${isWeekComplete ? 'week-done' : ''} ${openWeeks.has(String(weekObj.week)) ? 'open' : ''}`;
+        weekCard.id = 'week-card-' + weekObj.week;
+        weekCard.dataset.week = String(weekObj.week);
+
+        const pctWeek = Math.round((doneInWeek / 6) * 100);
+
+        weekCard.innerHTML = `
+          <div class="week-card-header">
+            <div class="week-info">
+              <div class="week-num-badge">
+                Semana ${weekObj.week}<br>
+                <span style="font-size:0.72rem; font-weight:600;">${doneInWeek}/6</span>
+              </div>
+              <div class="week-titles">
+                <h3>${weekObj.title}</h3>
+                <p>${weekObj.subtitle}</p>
+              </div>
+            </div>
+            <div class="week-meta">
+              <div class="mini-progress" title="${pctWeek}% completado">
+                <div class="mini-progress-fill" style="width:${pctWeek}%"></div>
+              </div>
+              <span style="font-size:1.1rem; color:var(--text-muted);">▾</span>
+            </div>
+          </div>
+          <div class="lessons-grid"></div>
+        `;
+
+        weekCard.querySelector('.week-card-header').addEventListener('click', () => {
+          weekCard.classList.toggle('open');
+        });
+
+        const lessonsGrid = weekCard.querySelector('.lessons-grid');
+
+        weekObj.lessons.forEach(lesson => {
+          const isDone = completedLessons.has(lesson.id);
+          const box = document.createElement('div');
+          box.className = `lesson-box ${isDone ? 'completed' : ''}`;
+
+          box.innerHTML = `
+            <div>
+              <div class="lesson-top">
+                <span class="day-tag">Día ${lesson.day} · 10 min</span>
+                <input type="checkbox" class="custom-checkbox" ${isDone ? 'checked' : ''} aria-label="Marcar clase completada" />
+              </div>
+              <div class="lesson-title">${lesson.title}</div>
+              <p class="lesson-preview" style="margin-top:6px;">${lesson.explanation}</p>
+            </div>
+            <div class="lesson-actions">
+              <button class="open-lesson-btn">Ver clase →</button>
+              <span style="font-size:0.75rem; color:${isDone ? 'var(--success)' : 'var(--text-muted)'}; font-weight:600;">
+                ${isDone ? '✓ Lista' : 'Pendiente'}
+              </span>
+            </div>
+          `;
+
+          const checkbox = box.querySelector('.custom-checkbox');
+          checkbox.addEventListener('change', (e) => {
+            e.stopPropagation();
+            if (checkbox.checked) completedLessons.add(lesson.id);
+            else completedLessons.delete(lesson.id);
+            saveProgress();
+          });
+
+          box.querySelector('.open-lesson-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            openLessonModal(weekObj.week, lesson.id);
+          });
+
+          lessonsGrid.appendChild(box);
+        });
+
+        container.appendChild(weekCard);
+      });
+    }
+
+    // Modal Logic
+    function openLessonModal(weekNum, lessonId) {
+      const weekObj = CURRICULUM.find(w => w.week === weekNum);
+      if (!weekObj) return;
+      const lesson = weekObj.lessons.find(l => l.id === lessonId);
+      if (!lesson) return;
+
+      currentModalLessonId = lessonId;
+
+      document.getElementById('modal-week-day').textContent = `Semana ${weekNum} · Día ${lesson.day} (10 minutos)`;
+      document.getElementById('modal-title').textContent = lesson.title;
+      document.getElementById('modal-explanation').textContent = lesson.explanation;
+      document.getElementById('modal-pronunciation').textContent = lesson.pronunciation;
+      document.getElementById('modal-practice').textContent = lesson.practice;
+
+      const vocabList = document.getElementById('modal-vocab-list');
+      vocabList.innerHTML = '';
+      lesson.vocab.forEach(item => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.textContent = item;
+        const btn = document.createElement('button');
+        btn.className = 'speak-btn';
+        btn.textContent = '🔊';
+        btn.title = 'Escuchar pronunciación en francés';
+        btn.onclick = () => speakFrench(item);
+        li.appendChild(span);
+        li.appendChild(btn);
+        vocabList.appendChild(li);
+      });
+
+      updateModalCompleteBtn();
+      document.getElementById('lesson-modal').classList.add('show');
+    }
+
+    function updateModalCompleteBtn() {
+      const btn = document.getElementById('modal-toggle-complete');
+      const isDone = completedLessons.has(currentModalLessonId);
+      if (isDone) {
+        btn.textContent = '✓ Clase completada (Desmarcar)';
+        btn.style.background = 'var(--success)';
+      } else {
+        btn.textContent = '✓ Marcar clase como completada';
+        btn.style.background = 'var(--primary)';
+      }
+    }
+
+    document.getElementById('modal-toggle-complete').addEventListener('click', () => {
+      if (!currentModalLessonId) return;
+      if (completedLessons.has(currentModalLessonId)) {
+        completedLessons.delete(currentModalLessonId);
+      } else {
+        completedLessons.add(currentModalLessonId);
+      }
+      updateModalCompleteBtn();
+      saveProgress();
+    });
+
+    document.getElementById('modal-close-btn').addEventListener('click', () => {
+      document.getElementById('lesson-modal').classList.remove('show');
+    });
+
+    document.getElementById('lesson-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'lesson-modal') {
+        document.getElementById('lesson-modal').classList.remove('show');
+      }
+    });
+
+    // 10-Minute Timer Logic (600 seconds)
+    let totalSeconds = 600;
+    let timerInterval = null;
+    let isRunning = false;
+
+    const timerDisplay = document.getElementById('timer-display');
+    const phaseLabel = document.getElementById('timer-phase-label');
+    const btnStart = document.getElementById('btn-start');
+    const btnPause = document.getElementById('btn-pause');
+    const btnReset = document.getElementById('btn-reset');
+    const phaseCards = document.querySelectorAll('.r-step');
+
+    function updateTimerUI() {
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+      phaseCards.forEach(c => c.classList.remove('active-phase'));
+
+      if (totalSeconds === 600 && !isRunning) {
+        phaseLabel.textContent = 'Listo para arrancar tu sesión';
+      } else if (totalSeconds > 480) {
+        // 10:00 -> 08:01 (2 min)
+        phaseLabel.textContent = 'Fase 1 (2m): Repaso de vocabulario';
+        phaseCards[0].classList.add('active-phase');
+      } else if (totalSeconds > 300) {
+        // 08:00 -> 05:01 (3 min)
+        phaseLabel.textContent = 'Fase 2 (3m): Explicación de tema nuevo';
+        phaseCards[1].classList.add('active-phase');
+      } else if (totalSeconds > 120) {
+        // 05:00 -> 02:01 (3 min)
+        phaseLabel.textContent = 'Fase 3 (3m): Escucha y pronunciación';
+        phaseCards[2].classList.add('active-phase');
+      } else if (totalSeconds > 0) {
+        // 02:00 -> 00:01 (2 min)
+        phaseLabel.textContent = 'Fase 4 (2m): Práctica oral o escrita';
+        phaseCards[3].classList.add('active-phase');
+      } else {
+        phaseLabel.textContent = '🎉 ¡Sesión de 10 minutos completada!';
+      }
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      if (totalSeconds <= 0) totalSeconds = 600;
+      isRunning = true;
+      btnStart.disabled = true;
+      btnStart.textContent = '▶ En curso';
+      btnPause.disabled = false;
+      updateTimerUI();
+
+      timerInterval = setInterval(() => {
+        totalSeconds--;
+        updateTimerUI();
+        if (totalSeconds <= 0) {
+          clearInterval(timerInterval);
+          isRunning = false;
+          btnStart.disabled = false;
+          btnStart.textContent = '▶ Iniciar';
+          btnPause.disabled = true;
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (!isRunning) return;
+      clearInterval(timerInterval);
+      isRunning = false;
+      btnStart.disabled = false;
+      btnStart.textContent = '▶ Continuar';
+      btnPause.disabled = true;
+      phaseLabel.textContent += ' (Pausado)';
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isRunning = false;
+      totalSeconds = 600;
+      btnStart.disabled = false;
+      btnStart.textContent = '▶ Iniciar';
+      btnPause.disabled = true;
+      updateTimerUI();
+    }
+
+    btnStart.addEventListener('click', startTimer);
+    btnPause.addEventListener('click', pauseTimer);
+    btnReset.addEventListener('click', resetTimer);
+
+    document.getElementById('modal-start-timer').addEventListener('click', () => {
+      document.getElementById('lesson-modal').classList.remove('show');
+      document.querySelector('[data-target="view-dashboard"]').click();
+      resetTimer();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Navigation Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // Filter Pills
+    document.querySelectorAll('.filter-chip[data-filter]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip[data-filter]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentFilter = chip.dataset.filter;
+        renderCurriculum();
+      });
+    });
+
+    let allExpanded = false;
+    document.getElementById('btn-toggle-all').addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      document.querySelectorAll('.week-card').forEach(card => {
+        if (allExpanded) card.classList.add('open');
+        else card.classList.remove('open');
+      });
+    });
+
+    // Personal Notes Auto-save
+    const vocabArea = document.getElementById('notes-vocab');
+    const grammarArea = document.getElementById('notes-grammar');
+    const saveStatus = document.getElementById('notes-save-status');
+
+    vocabArea.value = localStorage.getItem(STORAGE_KEY_NOTES_VOCAB) || '';
+    grammarArea.value = localStorage.getItem(STORAGE_KEY_NOTES_GRAMMAR) || '';
+
+    function handleNoteInput() {
+      saveStatus.textContent = 'Guardando...';
+      localStorage.setItem(STORAGE_KEY_NOTES_VOCAB, vocabArea.value);
+      localStorage.setItem(STORAGE_KEY_NOTES_GRAMMAR, grammarArea.value);
+      setTimeout(() => {
+        saveStatus.textContent = '✓ Guardado automáticamente';
+      }, 300);
+    }
+
+    vocabArea.addEventListener('input', handleNoteInput);
+    grammarArea.addEventListener('input', handleNoteInput);
+
+    // Export Notes as TXT
+    document.getElementById('btn-export-notes').addEventListener('click', () => {
+      const content = `FRENCH LEARNING CENTER — MIS NOTAS\n====================================\n\n[MI VOCABULARIO Y FRASES]\n${vocabArea.value}\n\n[DUDAS Y APUNTES]\n${grammarArea.value}`;
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mis-notas-frances.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Reset all progress
+    document.getElementById('btn-reset-all').addEventListener('click', () => {
+      if (confirm('¿Seguro que querés reiniciar el progreso de las 72 clases? (Tus notas no se borrarán)')) {
+        completedLessons.clear();
+        saveProgress();
+      }
+    });
+
+    // Init
+    updateTimerUI();
+    updateDashboard();
+    renderCurriculum();
+  </script>
+</body>
+</html>
